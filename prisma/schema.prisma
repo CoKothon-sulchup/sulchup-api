@@ -9,3 +9,31 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(255)
+  avatar    String  @db.VarChar(255)
+  email     String  @db.VarChar(255)
+  password  String  @db.VarChar(255)
+
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model Note {
+  id                  Int       @id @default(autoincrement())
+  image_url           String    @db.VarChar(255)
+  date                DateTime
+  rating              Float     @default(0)
+  audio               String?
+  comment             String    @default("")
+  price               String    @default("")
+  place               String    @default("")
+  friend              String    @default("")
+  alc_level           Float     @default(0)
+  simple_description  String  @default("")
+
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
